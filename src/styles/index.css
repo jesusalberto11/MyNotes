@@ -1,0 +1,94 @@
+@import url("../styles/fonts.css");
+@import url("../styles/MarkdownEditor.css");
+@import url("../styles/global/htmlElements.css");
+@import url("../styles/global/layoutStyles.css");
+
+* {
+  margin: 0;
+
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: Source sans pro, Inter, system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: dark;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --page-text-color: #f8f9fa;
+  --page-bg-color: #0d1117;
+
+  --note-item-bg-color: #0d1117;
+  --note-item-border: 1px solid #2c3b4e;
+
+  --item-bg-color: #0d1117;
+  --item-border: 1px solid #2c3b4e;
+
+  --settings-item-bg-color: #11151b;
+}
+
+.light-mode {
+  color-scheme: light;
+
+  --page-text-color: #373d49;
+  --page-bg-color: #ffffff;
+
+  --note-item-bg-color: #ffffff;
+  --note-item-border: 1px solid #dbdbdb;
+
+  --item-bg-color: #ffffff;
+  --item-border: 1px solid #dbdbdb;
+
+  --settings-item-bg-color: #efefef;
+}
+
+html,
+#root,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  overflow-y: hidden;
+
+  color: var(--page-text-color);
+  background-color: var(--page-bg-color);
+}
+
+button {
+  font-family: "Inter";
+}
+
+.circle {
+  height: 45px;
+  width: 45px;
+
+  min-width: 45px;
+  min-height: 45px;
+
+  border-radius: 50%;
+  background-color: #d9d9d9;
+}
+
+.rounded-corners {
+  border-radius: 5px;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+/* 
+@media screen and (max-width: 768px) {
+  body {
+    padding-bottom: 100px !important;
+  }
+} */

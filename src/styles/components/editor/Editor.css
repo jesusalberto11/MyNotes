@@ -1,0 +1,79 @@
+.text-editor {
+  caret-color: #58a6ff;
+  color: var(--page-text-color);
+  background-color: var(--page-bg-color);
+
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+
+  font-size: 14px;
+  letter-spacing: normal;
+  line-height: calc(1em + 1ex);
+  tab-size: 4;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+
+  outline: none;
+  resize: none;
+
+  padding: 10px;
+}
+
+.text-editor::selection {
+  background-color: #007acc;
+  color: #ffffff;
+}
+
+.editor-page-layout {
+  display: grid;
+  grid-template-rows: 35px 1fr 20px;
+  grid-template-columns: auto;
+
+  padding-bottom: 10px;
+}
+
+.editor-and-view-container {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5px;
+
+  overflow-y: auto;
+}
+
+.text-editor,
+.view-container {
+  border: none;
+  border: var(--item-border);
+  border-radius: 5px;
+}
+
+.view-container {
+  padding: 10px;
+
+  overflow-y: auto;
+}
+
+.editor-header {
+  height: 35px;
+}
+
+.editor-footer {
+  height: 20px;
+
+  background-color: #007acc;
+
+  border-radius: 5px;
+
+  padding: 0px 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .editor-and-view-container {
+    grid-template-columns: 1fr;
+  }
+
+  .save-changes-text {
+    display: none;
+  }
+}

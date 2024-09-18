@@ -1,0 +1,7 @@
+.app-header {
+  height: 60px;
+
+  padding: 5px 10px;
+
+  border-bottom: var(--item-border);
+}

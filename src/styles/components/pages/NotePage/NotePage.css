@@ -1,0 +1,17 @@
+.save-note-btn {
+  height: 32px;
+  cursor: pointer;
+
+  background-color: #06d6a0;
+  color: #002f26;
+
+  border: none;
+
+  font-weight: bold;
+
+  padding: 5px 10px;
+
+  &:hover {
+    background-color: #009f77;
+  }
+}

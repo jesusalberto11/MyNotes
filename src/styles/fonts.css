@@ -1,0 +1,78 @@
+@font-face {
+  font-family: "Pacifico";
+  src: url("/fonts/Pacifico-Regular.ttf");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("/fonts/Lato-Regular.ttf");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("/fonts/Lato-Bold.ttf");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fonts/Montserrat-Variable.ttf");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/Inter-Variable.ttf");
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Source sans pro";
+  src: url("/fonts/SourceSansPro-Regular.otf");
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Source sans pro";
+  src: url("/fonts/SourceSansPro-Light.otf");
+  font-style: normal;
+  font-display: swap;
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Source sans pro";
+  src: url("/fonts/SourceSansPro-Bold.otf");
+  font-style: bold;
+  font-display: swap;
+}
+
+.pacifico-font {
+  font-family: Pacifico;
+}
+
+.montserrat-font {
+  font-family: Montserrat;
+  font-weight: 900;
+}
+
+.source-sans-pro-font {
+  font-family: Source sans pro;
+}
+
+.source-sans-pro-font.light {
+  font-family: Source sans pro;
+  font-weight: 300;
+}

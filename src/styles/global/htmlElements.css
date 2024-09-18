@@ -1,0 +1,134 @@
+svg {
+  fill: #fff;
+}
+
+body.light-mode svg {
+  fill: black;
+}
+
+*::-webkit-scrollbar {
+  height: 5px;
+  width: 5px;
+}
+
+body.light-mode {
+  *::-webkit-scrollbar-thumb {
+    background-color: #bdbdbd;
+
+    border-radius: 5px;
+    border: 1px solid #bdbdbd;
+  }
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #2c3b4e;
+
+  border-radius: 5px;
+  border: 1px solid #2c3b4e;
+}
+
+/* Dialog */
+
+/*   Open state of the dialog  */
+dialog[open] {
+  pointer-events: all;
+  opacity: 1;
+  transform: scale(1);
+}
+
+/*   Closed state of the dialog   */
+dialog {
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.95);
+
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out,
+    overlay 0.2s ease-out allow-discrete, display 0.2s ease-out allow-discrete;
+}
+
+/*   Before-open state  */
+/* Needs to be after the previous dialog[open] rule to take effect,
+      as the specificity is the same */
+@starting-style {
+  dialog[open] {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+}
+
+/* Transition the :backdrop when the dialog modal is promoted to the top layer */
+dialog::backdrop {
+  background-color: rgb(0 0 0 / 0%);
+  transition: display 0.2s allow-discrete, overlay 0.2s allow-discrete,
+    background-color 0.2s;
+}
+
+dialog[open]::backdrop {
+  background-color: rgb(0 0 0 / 25%);
+}
+
+/* This starting-style rule cannot be nested inside the above selector
+  because the nesting selector cannot represent pseudo-elements. */
+
+@starting-style {
+  dialog[open]::backdrop {
+    background-color: rgb(0 0 0 / 0%);
+  }
+}
+
+dialog::backdrop {
+  background: rgb(89, 13, 34);
+  background: linear-gradient(
+    180deg,
+    rgba(89, 13, 34, 1) 0%,
+    rgba(89, 13, 34, 1) 100%
+  );
+  opacity: 0.65;
+}
+
+.simple-dialog {
+  height: auto;
+  width: auto;
+
+  place-self: center;
+
+  padding: 15px;
+
+  color: var(--page-text-color);
+  background-color: var(--item-bg-color);
+
+  font-family: Source sans pro;
+
+  border: var(--item-border);
+  border-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.confirm-dialog-button {
+  cursor: pointer;
+
+  height: 35px;
+  width: 125px;
+
+  color: var(--page-text-color);
+  background-color: var(--item-bg-color);
+
+  border: var(--item-border);
+
+  border-radius: 5px;
+
+  transition: all 0.2s;
+
+  &:hover {
+    filter: drop-shadow(0 0 8px #ff8b8b);
+  }
+
+  &:active {
+    transform: scale(0.9);
+  }
+}
+
+/* Dialog */

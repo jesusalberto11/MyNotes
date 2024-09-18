@@ -1,0 +1,36 @@
+.simple-button {
+  cursor: pointer;
+
+  height: 32px;
+  width: 32px;
+  min-width: 32px;
+  min-height: 32px;
+
+  padding: 0px 5px;
+
+  color: var(--page-text-color);
+  background-color: var(--item-bg-color);
+
+  border: var(--item-border);
+  border-radius: 5px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+
+  text-align: center;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-decoration: none;
+
+  transition: all 0.3s;
+}
+
+.simple-button:hover {
+  filter: drop-shadow(0 0 8px #ff8b8b);
+}
+
+.simple-button:active {
+  transform: scale(0.9);
+}

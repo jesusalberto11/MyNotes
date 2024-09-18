@@ -1,0 +1,28 @@
+.page-content {
+  max-width: 85ch;
+
+  overflow-y: auto;
+
+  padding-bottom: 10px;
+}
+
+body.light-mode {
+  .page-title {
+    color: #525252;
+  }
+}
+
+.page-title {
+  color: #a7bbd2;
+
+  font-size: 26px;
+  font-weight: 100;
+
+  letter-spacing: 1px;
+}
+
+@media screen and (max-width: 768px) {
+  .page-content {
+    max-width: 100%;
+  }
+}
