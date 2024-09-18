@@ -2,7 +2,7 @@ import { INote } from "../interfaces/INote";
 
 export const NOTES: Array<INote> = [
   {
-    id: 0,
+    id: "0",
     title: "Today's Tasks",
     description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
     date: new Date(),
@@ -10,7 +10,7 @@ export const NOTES: Array<INote> = [
     textColor: "#ffffff",
   },
   {
-    id: 1,
+    id: "1",
     title: "Shopping List",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ratione, magni repellendus aspernatur nulla tenetur minima iure tempore harum provident. Dolor porro optio ab saepe. Dolorem animi facilis pariatur odit.",
@@ -19,7 +19,7 @@ export const NOTES: Array<INote> = [
     textColor: "#000000",
   },
   {
-    id: 2,
+    id: "2",
     title: "Trend List",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ratione, magni repellendus aspernatur nulla tenetur minima iure tempore harum provident.",
@@ -28,7 +28,7 @@ export const NOTES: Array<INote> = [
     textColor: "#000000",
   },
   {
-    id: 3,
+    id: "3",
     title: "Social Posts",
     description: "Dolorem animi facilis pariatur odit.",
     date: new Date(),
@@ -36,7 +36,7 @@ export const NOTES: Array<INote> = [
     textColor: "#000000",
   },
   {
-    id: 4,
+    id: "4",
     title: "Homework",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ratione, magni repellendus aspernatur nulla tenetur minima iure tempore harum provident. Dolor porro optio ab saepe. Dolorem animi facilis pariatur odit.",
@@ -45,7 +45,7 @@ export const NOTES: Array<INote> = [
     textColor: "#000000",
   },
   {
-    id: 6,
+    id: "6",
     title: "Workout",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ratione, magni repellendus aspernatur nulla tenetur minima iure tempore harum provident. Dolor porro optio ab saepe. Dolorem animi facilis pariatur odit.",
