@@ -1,4 +1,4 @@
-import "../styles/components/editor/editor.css";
+import "../styles/components/editor/Editor.css";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Markdown from "react-markdown";
