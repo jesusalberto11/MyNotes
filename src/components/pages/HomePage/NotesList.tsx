@@ -7,18 +7,22 @@ import { useNotes } from "../../../hooks/useNotes";
 import { INote } from "../../../interfaces/INote";
 import SearchInput from "../../shared/data-entry/SearchInput";
 import LoaderSpinner from "../../shared/ui/LoaderSpinner";
+import { useAuth } from "../../../hooks/useAuth";
 
 const NotesList = () => {
+  const { isLoggedIn } = useAuth();
   const { getNotes } = useNotes();
   const [notes, setNotes] = useState<INote[] | null>(null);
   const [filteredNotes, setFilteredNotes] = useState<INote[] | null>(null);
 
   useEffect(() => {
+    if (isLoggedIn === null) return;
+
     getNotes().then((response) => {
       setNotes(response);
       setFilteredNotes(response);
     });
-  }, []);
+  }, [isLoggedIn]);
 
   return (
     <>
