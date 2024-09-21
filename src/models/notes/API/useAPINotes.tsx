@@ -1,13 +1,53 @@
 import { getMySQLDate } from "../../../helpers/dateParser";
+import { useAuth } from "../../../hooks/useAuth";
 import { IApiResponse } from "../../../interfaces/IApiResponse";
 import { INote } from "../../../interfaces/INote";
+import { userUserStore } from "../../../store/UserStore";
 
 export const useAPINotes = () => {
+  const { accessToken, logOutUser } = useAuth();
+  const { setTokens } = userUserStore();
+
   const getNotesFromAPI = async (): Promise<INote[] | null> => {
     try {
+      let notes: INote[] | null = null;
+
       const data = await fetch(
-        `${import.meta.env.VITE_API_ENDPOINT}/getAll.php`
+        `${import.meta.env.VITE_API_ENDPOINT}/getAll.php`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "Content-Type": "application/json",
+          },
+        }
       );
+
+      if (data.status === 401) {
+        const refreshToken = localStorage.getItem("refreshToken");
+        if (refreshToken) {
+          const newToken = await refreshAccessToken(refreshToken);
+          if (newToken) {
+            localStorage.setItem("token", newToken);
+            setTokens(newToken, refreshToken);
+
+            const data = await fetch(
+              `${import.meta.env.VITE_API_ENDPOINT}/getAll.php`,
+              {
+                method: "GET",
+                headers: {
+                  Authorization: `Bearer ${newToken}`,
+                  "Content-Type": "application/json",
+                },
+              }
+            );
+
+            const response = (await data.json()) as IApiResponse;
+            return (notes = response.results);
+          }
+        }
+      }
+
       const response = (await data.json()) as IApiResponse;
 
       if (response.status === "error") {
@@ -15,7 +55,7 @@ export const useAPINotes = () => {
         return null;
       }
 
-      const notes = response.results as INote[];
+      notes = response.results as INote[];
 
       if (!notes?.length) return null;
 
@@ -133,6 +173,34 @@ export const useAPINotes = () => {
       return;
     } catch (err) {
       console.error("[ERROR] - Can't delete all notes on API! ", err);
+    }
+  };
+
+  const refreshAccessToken = async (refreshToken: string) => {
+    try {
+      const res = await fetch(
+        `${import.meta.env.VITE_AUTH_ENDPOINT}/refreshAuth.php`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ refreshToken }),
+        }
+      );
+
+      //YA SI EL TOKEN NO ES VALIDO, LISTO, LOGOUT
+      if (res.status === 401) {
+        console.log("The refresh token its invalid");
+        logOutUser();
+        //TODO: MEJORAR ESTO, HACER LOGOUT
+      }
+
+      const data = await res.json();
+      return data.accessToken;
+    } catch (err) {
+      console.error("Error refreshing token:", err);
+      return null;
     }
   };
 
