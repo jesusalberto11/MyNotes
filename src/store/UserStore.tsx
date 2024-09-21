@@ -2,6 +2,7 @@ import { create } from "zustand";
 
 interface IUserStoreState {
   accessToken: string | null;
+
   refreshToken: string | null;
 
   setTokens: (acToken: string, rfToken: string) => void;
