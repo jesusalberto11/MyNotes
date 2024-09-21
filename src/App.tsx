@@ -3,12 +3,15 @@ import { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import AppHeader from "./components/layout/AppHeader";
 import { useTheme } from "./hooks/useTheme";
+import { useAuth } from "./hooks/useAuth";
 
 function App() {
   const { checkSavedTheme } = useTheme();
+  const { checkForSavedToken } = useAuth();
 
   useEffect(() => {
     checkSavedTheme();
+    checkForSavedToken();
   }, []);
 
   return (
