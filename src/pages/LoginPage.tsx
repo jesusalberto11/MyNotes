@@ -6,8 +6,7 @@ import { useAuth } from "../hooks/useAuth";
 const LoginPage = () => {
   const navigate = useNavigate();
 
-  const { isLoggedIn } = useAuth();
-
+  const { authUser, isLoggedIn } = useAuth();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [errorMsg, setErrorMsg] = useState<string>("");
@@ -23,23 +22,30 @@ const LoginPage = () => {
     setErrorMsg("");
     setIsLoading(true);
 
-    await signIn(email, password)
-      .then((_response) => {
+    try {
+      const response = await authUser(email, password);
+
+      if (!response) {
+        setErrorMsg("Error en la autenticación.");
         setIsLoading(false);
+
         setEmail("");
         setPassword("");
-        //setUser(response)
+        return;
+      }
 
-        navigate("/");
-      })
-      .catch((error: string) => {
+      if (response.status === "error") {
         setIsLoading(false);
-        setErrorMsg(error);
-      });
-  };
+        setErrorMsg(response.error);
 
-  const signIn = async (e: string, p: string): Promise<void> => {
-    console.log(e, p);
+        return;
+      }
+
+      navigate("/");
+    } catch (err) {
+      setErrorMsg("Error desconocido");
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -110,6 +116,7 @@ const LoginPage = () => {
                 placeholder="Email *"
                 type="email"
                 autoComplete="email"
+                value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
@@ -124,6 +131,7 @@ const LoginPage = () => {
                 type="password"
                 placeholder="Contraseña *"
                 autoComplete="current-password"
+                value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
