@@ -1,5 +1,5 @@
 import "../styles/components/editor/Editor.css";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Markdown from "react-markdown";
 import EditorHeader from "../components/pages/EditorPage/EditorHeader";
@@ -11,6 +11,8 @@ import { INote } from "../interfaces/INote";
 
 const EditorPage = () => {
   const navigate = useNavigate();
+  const textAreaRef = useRef<HTMLTextAreaElement>(null);
+  const viewAreaRef = useRef<HTMLDivElement>(null);
 
   const { windowWidth } = useWindowsWidth();
   const { id } = useParams();
@@ -59,6 +61,19 @@ const EditorPage = () => {
     );
   };
 
+  const handleScroll = (e: any) => {
+    const scrollTop = e.target.scrollTop;
+    const scrollHeight = e.target.scrollHeight;
+    const clientHeight = e.target.clientHeight;
+    const scrollPercentage = scrollTop / (scrollHeight - clientHeight);
+
+    const viewContainer = viewAreaRef.current;
+
+    if (!viewContainer) return;
+
+    viewContainer.scrollTop = scrollPercentage * (viewContainer.scrollHeight - viewContainer.clientHeight);
+  };
+
   return (
     <>
       {note ? (
@@ -82,14 +97,17 @@ const EditorPage = () => {
                 >
                   <textarea
                     id="text-editor"
+                    ref={textAreaRef}
                     className="w-full h-full text-editor"
                     onChange={(e) => handleEditorOnChange(e.target.value)}
                     defaultValue={newText}
                     spellCheck="false"
+                    onScroll={handleScroll}
                   ></textarea>
                 </div>
 
                 <div
+                  ref={viewAreaRef}
                   className="view-container w-full"
                   style={{ flexGrow: "1" }}
                 >
