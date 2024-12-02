@@ -20,6 +20,7 @@ export const useNotesModel = () => {
     updateNoteOnLocalDB,
     deleteNoteOnLocalDB,
     deleteAllNotesOnLocalDB,
+    setNotesOnLocalDB,
   } = useLocalNotes();
 
   const getNotes = async (): Promise<INote[] | null> => {
@@ -28,6 +29,10 @@ export const useNotesModel = () => {
     } else {
       return await getNotesFromLocalDB();
     }
+  };
+
+  const setNotes = async (newNotes: INote): Promise<void> => {
+    await setNotesOnLocalDB(newNotes);
   };
 
   const getNote = async (id: string): Promise<INote | null> => {
@@ -78,6 +83,7 @@ export const useNotesModel = () => {
   return {
     getNotes,
     getNote,
+    setNotes,
     createNote,
     updateNote,
     deleteNote,

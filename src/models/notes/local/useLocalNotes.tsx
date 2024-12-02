@@ -20,6 +20,21 @@ export const useLocalNotes = () => {
     }
   };
 
+  const setNotesOnLocalDB = async (newNotes: INote): Promise<void> => {
+    try {
+      await localforage.removeItem(LOCALFORAGE_KEY);
+
+      if (!newNotes) {
+        await localforage.setItem(LOCALFORAGE_KEY, []);
+        return;
+      }
+
+      await localforage.setItem(LOCALFORAGE_KEY, newNotes);
+    } catch (err) {
+      console.error("[ERROR] - Can't set notes from localForage! ", err);
+    }
+  };
+
   const getNoteFromLocalDB = async (id: string): Promise<INote | null> => {
     try {
       const data = await getNotesFromLocalDB();
@@ -121,6 +136,7 @@ export const useLocalNotes = () => {
   return {
     getNotesFromLocalDB,
     getNoteFromLocalDB,
+    setNotesOnLocalDB,
     createNoteOnLocalDB,
     updateNoteOnLocalDB,
     deleteNoteOnLocalDB,

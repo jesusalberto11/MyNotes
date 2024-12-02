@@ -4,6 +4,7 @@ export const useNotes = () => {
   const {
     getNotes,
     getNote,
+    setNotes,
     createNote,
     updateNote,
     deleteNote,
@@ -13,6 +14,7 @@ export const useNotes = () => {
   return {
     getNotes,
     getNote,
+    setNotes,
     createNote,
     updateNote,
     deleteNote,
